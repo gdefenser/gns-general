@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!-- 数据库驱动包位置 -->
+  <classPathEntry location="C:\Users\Lovesha\.m2\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar"/>
+  <context id="context1">
+    <commentGenerator>
+      <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+      <property name="suppressAllComments" value="true"/>
+      <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+    </commentGenerator>
+    <!-- 数据库链接URL、用户名、密码 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://rm-wz9azy46106dzg5x6yo.mysql.rds.aliyuncs.com:3306/liz_sso" userId="liz_sso" password="VghvmZW5G2xSctUNJp2X"/>
+    <!-- 生成模型的包名和位置 -->
+    <javaModelGenerator targetPackage="gns.test.sso.entity" targetProject="gns-general-mybatis/src/test/java"/>
+    <!-- 生成的映射文件报名和位置 -->
+    <sqlMapGenerator targetPackage="gns.test.sso.mapper" targetProject="gns-general-mybatis/src/test/java"/>
+    <!-- 生成DAO的包名和位置 -->
+    <javaClientGenerator targetPackage="gns.test.sso.dao" targetProject="gns-general-mybatis/src/test/java" type="XMLMAPPER"/>
+    <table schema="liz_sso" tableName="sso_admin" domainObjectName="SsoAdmin" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+      <columnOverride column="admin_id" property="adminId"/>
+      <columnOverride column="admin_no" property="adminNo"/>
+      <columnOverride column="admin_name" property="adminName"/>
+      <columnOverride column="password_salt" property="passwordSalt"/>
+      <columnOverride column="password" property="password"/>
+      <columnOverride column="create_ts" property="createTs"/>
+    </table>
+    <table schema="liz_sso" tableName="sso_app" domainObjectName="SsoApp" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+      <columnOverride column="app_id" property="appId"/>
+      <columnOverride column="app_name" property="appName"/>
+      <columnOverride column="app_description" property="appDescription"/>
+    </table>
+    <table schema="liz_sso" tableName="sso_config" domainObjectName="SsoConfig" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+      <columnOverride column="config_key" property="configKey"/>
+      <columnOverride column="config_value" property="configValue"/>
+      <columnOverride column="config_description" property="configDescription"/>
+    </table>
+    <table schema="liz_sso" tableName="sso_navbar" domainObjectName="SsoNavbar" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+      <columnOverride column="id" property="id"/>
+      <columnOverride column="text" property="text"/>
+      <columnOverride column="url" property="url"/>
+      <columnOverride column="class_name" property="className"/>
+      <columnOverride column="icon_name" property="iconName"/>
+      <columnOverride column="type" property="type"/>
+      <columnOverride column="parent_id" property="parentId"/>
+      <columnOverride column="sort" property="sort"/>
+    </table>
+    <table schema="liz_sso" tableName="sso_user" domainObjectName="SsoUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+      <columnOverride column="user_id" property="userId"/>
+      <columnOverride column="user_name" property="userName"/>
+      <columnOverride column="user_password_salt" property="userPasswordSalt"/>
+      <columnOverride column="user_password" property="userPassword"/>
+      <columnOverride column="user_create_ts" property="userCreateTs"/>
+    </table>
+  </context>
+</generatorConfiguration>

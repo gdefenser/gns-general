@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gns.test.sso.dao.SsoNavbarMapper">
+  <resultMap id="BaseResultMap" type="gns.test.sso.entity.SsoNavbar">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="icon_name" jdbcType="VARCHAR" property="iconName" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, text, url, class_name, icon_name, type, parent_id, sort
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sso_navbar
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sso_navbar
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="gns.test.sso.entity.SsoNavbar">
+    insert into sso_navbar (id, text, url, 
+      class_name, icon_name, type, 
+      parent_id, sort)
+    values (#{id,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{className,jdbcType=VARCHAR}, #{iconName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="gns.test.sso.entity.SsoNavbar">
+    insert into sso_navbar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="text != null">
+        text,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="iconName != null">
+        icon_name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="iconName != null">
+        #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="gns.test.sso.entity.SsoNavbar">
+    update sso_navbar
+    <set>
+      <if test="text != null">
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="iconName != null">
+        icon_name = #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="gns.test.sso.entity.SsoNavbar">
+    update sso_navbar
+    set text = #{text,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR},
+      icon_name = #{iconName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gns.test.sso.dao.SsoConfigMapper">
+  <resultMap id="BaseResultMap" type="gns.test.sso.entity.SsoConfig">
+    <id column="config_key" jdbcType="VARCHAR" property="configKey" />
+    <result column="config_value" jdbcType="VARCHAR" property="configValue" />
+    <result column="config_description" jdbcType="VARCHAR" property="configDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    config_key, config_value, config_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sso_config
+    where config_key = #{configKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sso_config
+    where config_key = #{configKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="gns.test.sso.entity.SsoConfig">
+    insert into sso_config (config_key, config_value, config_description
+      )
+    values (#{configKey,jdbcType=VARCHAR}, #{configValue,jdbcType=VARCHAR}, #{configDescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="gns.test.sso.entity.SsoConfig">
+    insert into sso_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configKey != null">
+        config_key,
+      </if>
+      <if test="configValue != null">
+        config_value,
+      </if>
+      <if test="configDescription != null">
+        config_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configKey != null">
+        #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null">
+        #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="configDescription != null">
+        #{configDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="gns.test.sso.entity.SsoConfig">
+    update sso_config
+    <set>
+      <if test="configValue != null">
+        config_value = #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="configDescription != null">
+        config_description = #{configDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where config_key = #{configKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="gns.test.sso.entity.SsoConfig">
+    update sso_config
+    set config_value = #{configValue,jdbcType=VARCHAR},
+      config_description = #{configDescription,jdbcType=VARCHAR}
+    where config_key = #{configKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

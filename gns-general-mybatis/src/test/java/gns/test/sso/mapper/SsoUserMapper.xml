@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gns.test.sso.dao.SsoUserMapper">
+  <resultMap id="BaseResultMap" type="gns.test.sso.entity.SsoUser">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_password_salt" jdbcType="VARCHAR" property="userPasswordSalt" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_create_ts" jdbcType="TIMESTAMP" property="userCreateTs" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_password_salt, user_password, user_create_ts
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sso_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sso_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="gns.test.sso.entity.SsoUser">
+    insert into sso_user (user_id, user_name, user_password_salt, 
+      user_password, user_create_ts)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPasswordSalt,jdbcType=VARCHAR}, 
+      #{userPassword,jdbcType=VARCHAR}, #{userCreateTs,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="gns.test.sso.entity.SsoUser">
+    insert into sso_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPasswordSalt != null">
+        user_password_salt,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userCreateTs != null">
+        user_create_ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPasswordSalt != null">
+        #{userPasswordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreateTs != null">
+        #{userCreateTs,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="gns.test.sso.entity.SsoUser">
+    update sso_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPasswordSalt != null">
+        user_password_salt = #{userPasswordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreateTs != null">
+        user_create_ts = #{userCreateTs,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="gns.test.sso.entity.SsoUser">
+    update sso_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_password_salt = #{userPasswordSalt,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_create_ts = #{userCreateTs,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

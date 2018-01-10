@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gns.test.sso.dao.SsoAppMapper">
+  <resultMap id="BaseResultMap" type="gns.test.sso.entity.SsoApp">
+    <id column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="app_description" jdbcType="VARCHAR" property="appDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    app_id, app_name, app_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sso_app
+    where app_id = #{appId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sso_app
+    where app_id = #{appId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="gns.test.sso.entity.SsoApp">
+    insert into sso_app (app_id, app_name, app_description
+      )
+    values (#{appId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appDescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="gns.test.sso.entity.SsoApp">
+    insert into sso_app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="appDescription != null">
+        app_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescription != null">
+        #{appDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="gns.test.sso.entity.SsoApp">
+    update sso_app
+    <set>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescription != null">
+        app_description = #{appDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where app_id = #{appId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="gns.test.sso.entity.SsoApp">
+    update sso_app
+    set app_name = #{appName,jdbcType=VARCHAR},
+      app_description = #{appDescription,jdbcType=VARCHAR}
+    where app_id = #{appId,jdbcType=VARCHAR}
+  </update>
+</mapper>
